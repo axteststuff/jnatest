@@ -1,4 +1,7 @@
 package ld;
+import java.io.File;
+import java.nio.file.Path;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 
@@ -10,17 +13,24 @@ public class App
 {
     public static void main( String[] args )
     {
-        try {
+       // try {
                 System.out.println( "Hello World!" );
-                MyApi.mysys.setenv("AVAR", "AVAL", 1);
-                System.out.println(MyApi.mysys.getenv("AVAR"));
+                File p = new File("linux-x86-64");
+                MyApi.mysys.setenv("LD_LIBRARY_PATH", p.getAbsolutePath() ,1);
+                System.out.println(MyApi.mysys.getenv("LD_LIBRARY_PATH"));
                 System.out.println(System.getenv("AVAR"));
                 System.out.println(MyApi.mysys.getpid());
                 System.out.println(MyApi.mysys.getppid());
                 long[] timenul = new long[1];
                 System.out.println(MyApi.mysys.time(timenul));
 
-                int x;
+                System.loadLibrary("myalloc");
+                System.loadLibrary("test");
+                System.out.println("yoYo");
+                File f = new File("linux-x86-64/libtest.so");
+                System.load(f.getAbsolutePath());
+
+/*                int x;
                 PointerByReference pref = new PointerByReference();
                 x = MyApi.mytest.fun_alloc(pref);
                 Pointer ptr = pref.getValue();
@@ -47,9 +57,9 @@ public class App
                             + " " + mystructs[x].b);
                     x++;
                 }
-
-            } catch (UnsatisfiedLinkError e) {
-                System.out.println("Exception" + e);
-            }
+*/
+//            } catch (UnsatisfiedLinkError e) {
+  //              System.out.println("Exception" + e);
+    //        }
     }
 }

@@ -15,7 +15,7 @@ public class MyApi {
     public long time(long buf[]);
   }
   static MySys mysys = (MySys) Native.loadLibrary("c", MySys.class);
-
+/*
   interface MyTest extends Library {
       int fun_alloc(PointerByReference p);
 
@@ -26,4 +26,5 @@ public class MyApi {
       int setvals(MyStruct[] mstructs, int sizeofarray);
   }
   static MyTest mytest = (MyTest) Native.loadLibrary("mytest", MyTest.class);
+  */
 }
