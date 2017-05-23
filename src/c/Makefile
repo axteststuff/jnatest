@@ -3,12 +3,12 @@ all:
 	gcc -c myalloc.c -fPIC
 	gcc -shared -fPIC -o libmyalloc.so myalloc.o
 	gcc -c test.c -fPIC
-	gcc -shared -fPIC -o libtest.so test.o # -L. -lmyalloc
+	gcc -shared -fPIC -o libtest.so test.o -L. -lmyalloc
 
 install: all
-	mkdir -p ../../target/${arch}
-	cp -v *.so ../../target/${arch}
+	mkdir -p ../../${arch}
+	cp -v *.so ../../${arch}
 
 clean:
-	rm -f *.so *.o ../../target/${arch}/*.so
-	rmdir ../../target/${arch}
+	rm -f *.so *.o ../../${arch}/*.so
+	rmdir ../../${arch}

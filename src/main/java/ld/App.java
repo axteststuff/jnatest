@@ -47,7 +47,7 @@ public class App
     {
        try {
                 System.out.println( "Hello World!" );
-                File p = new File("linux-x86-64");
+                File p = new File("../linux-x86-64");
                 MyApi.mysys.setenv("LD_LIBRARY_PATH", p.getAbsolutePath() ,1);
                 System.out.println("before java.library.path " + System.getProperty("java.library.path"));
                 addJavaLibraryPath(p.getAbsolutePath());
@@ -62,12 +62,8 @@ public class App
                 System.loadLibrary("myalloc");
                 System.loadLibrary("test");
                 System.out.println("yoYo");
-       }
-       catch (IOException e){
-                System.out.println("Exception" + e);
-       }
 
-/*                int x;
+                int x;
                 PointerByReference pref = new PointerByReference();
                 x = MyApi.mytest.fun_alloc(pref);
                 Pointer ptr = pref.getValue();
@@ -94,9 +90,11 @@ public class App
                             + " " + mystructs[x].b);
                     x++;
                 }
-*/
-//            } catch (UnsatisfiedLinkError e) {
-  //              System.out.println("Exception" + e);
-    //        }
+
+            } catch (UnsatisfiedLinkError e) {
+                System.out.println("Exception" + e);
+            } catch (IOException e) {
+                System.out.println("Exception" + e);
+            }
     }
 }

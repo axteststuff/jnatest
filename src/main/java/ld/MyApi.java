@@ -2,7 +2,6 @@ package ld;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
-import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 
 public class MyApi {
@@ -15,7 +14,7 @@ public class MyApi {
     public long time(long buf[]);
   }
   static MySys mysys = (MySys) Native.loadLibrary("c", MySys.class);
-/*
+
   interface MyTest extends Library {
       int fun_alloc(PointerByReference p);
 
@@ -25,6 +24,5 @@ public class MyApi {
 
       int setvals(MyStruct[] mstructs, int sizeofarray);
   }
-  static MyTest mytest = (MyTest) Native.loadLibrary("mytest", MyTest.class);
-  */
+  static MyTest mytest = (MyTest) Native.loadLibrary("test", MyTest.class);
 }
