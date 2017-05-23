@@ -62,8 +62,6 @@ public class App
                 System.loadLibrary("myalloc");
                 System.loadLibrary("test");
                 System.out.println("yoYo");
-                File f = new File("linux-x86-64/libtest.so");
-                System.load(f.getAbsolutePath());
        }
        catch (IOException e){
                 System.out.println("Exception" + e);
