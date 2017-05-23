@@ -1,6 +1,7 @@
 // Save this in a file test.c
 #include <stdio.h>              
-#include <stdlib.h>             
+#include "myalloc.h"
+
 struct mystruct
 {              
     int a;     
@@ -9,7 +10,7 @@ struct mystruct
 
 int fun_alloc(struct mystruct **allocint)
 {                                        
-    *allocint = (struct mystruct *) malloc (sizeof(struct mystruct));
+    *allocint = (struct mystruct *) myalloc (sizeof(struct mystruct));
     printf("Native allocted pointer  %p\n", *allocint);              
     (*allocint)->a = 10000;                                          
     (*allocint)->b = 20099;
@@ -21,7 +22,7 @@ int fun_free(struct mystruct **ptr)
 {
     struct mystruct *p = *ptr;
     printf("Native Freeing mem %p with val %d %d\n", p,  p->a, p->b);
-    free(p);
+    myfree(p);
     return 0;
 }
 
