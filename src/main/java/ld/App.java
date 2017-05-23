@@ -11,6 +11,8 @@ public class App
         try {
                 System.out.println( "Hello World!" );
                 Env.e.setenv("AVAR", "AVAL", 1);
+                System.out.println(Env.e.getenv("AVAR"));
+                System.out.println(System.getenv("AVAR"));
                 System.out.println(Env.e.getpid());
                 System.out.println(Env.e.getppid());
                 long[] timenul = new long[1];

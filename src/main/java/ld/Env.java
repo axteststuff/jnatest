@@ -7,6 +7,7 @@ public class Env {
   public interface Setenv extends Library {
     public int setenv(String name, String value, int overwrite);
     public int unsetenv(String name);
+    public String getenv(String name);
     public int getpid();
     public int getppid();
     public long time(long buf[]);
