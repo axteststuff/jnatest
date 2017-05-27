@@ -11,3 +11,24 @@ To make one shared lib and test:
 
 java.library.path can be set via -Djava.library.path or setProperties(), which is how it is done in code App.java.
 
+to list the shared library dependancy use the following:
+	ldd linux-x86-64/libtest.so # first so.
+	ldd linux-x86-64/libmyalloc.so # second so.
+
+if LD_LIBRARY_PATH is not set to $(pwd)/linux-x86-64 then ldd will list it but will not find it..
+
+#  LD_LIBRARY_PATH not set
+$ldd linux-x86-64/libtest.so
+	linux-vdso.so.1 =>  (0x00007fff290ac000)
+	libmyalloc.so => not found
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f3a776cd000)
+	/lib64/ld-linux-x86-64.so.2 (0x000055b5a5219000)
+
+#  LD_LIBRARY_PATH set
+$LD_LIBRARY_PATH=./linux-x86-64 ldd linux-x86-64/libtest.so 
+	linux-vdso.so.1 =>  (0x00007ffce0bcc000)
+	libmyalloc.so => ./linux-x86-64/libmyalloc.so (0x00007f2c9cdcd000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2c9c9ea000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000560b1d2f6000)
+
+Note: Java expects LD_LIBRARY_PATH to have absolute paths.
