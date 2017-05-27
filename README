@@ -1,2 +1,13 @@
-mvn clean install assembly:single
-java -jar target/app-1.0-SNAPSHOT-jar-with-dependencies.jar
+This test uses JNA (Java Native API).. it is the same results with JNI
+
+To make two shared libs and test:
+	make two
+	make test  # will fail with "Exceptionjava.lang.UnsatisfiedLinkError: libmyalloc.so: cannot open shared object file: No such file or directory"
+	LD_LIBRARY_PATH=$(pwd)/linux-x86-64 make test          # will succees.. LD_LIBRARY_PATH path helps to find the 2nd shared lib
+
+To make one shared lib and test:
+	make one
+	make test  # will succeed..
+
+java.library.path can be set via -Djava.library.path or setProperties(), which is how it is done in code App.java.
+
