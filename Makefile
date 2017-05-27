@@ -1,7 +1,12 @@
-all: native java
+two: native-two java
 
-native:
-	make -C src/c all install
+one: native-one java
+
+native-one:
+	make -C src/c one install
+
+native-two:
+	make -C src/c two install
 
 java:
 	mvn clean install assembly:single 

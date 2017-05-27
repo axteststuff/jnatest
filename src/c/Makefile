@@ -1,11 +1,16 @@
 arch=$(shell uname | tr '[:upper:]' '[:lower:]')-$(shell uname -p | tr '_' '-')
-all:
+one:
+	gcc -c myalloc.c -fPIC
+	gcc -c test.c -fPIC
+	gcc -shared -fPIC -o libtest.so test.o myalloc.o
+
+two:
 	gcc -c myalloc.c -fPIC
 	gcc -shared -fPIC -o libmyalloc.so myalloc.o
 	gcc -c test.c -fPIC
 	gcc -shared -fPIC -o libtest.so test.o -L. -lmyalloc
 
-install: all
+install:
 	mkdir -p ../../${arch}
 	cp -v *.so ../../${arch}
 

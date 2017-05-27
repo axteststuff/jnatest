@@ -59,7 +59,6 @@ public class App
                 System.out.println(MyApi.mysys.time(timenul));
 
                 System.out.println("after java.library.path " + System.getProperty("java.library.path"));
-                System.loadLibrary("myalloc");
                 System.loadLibrary("test");
                 System.out.println("yoYo");
 
